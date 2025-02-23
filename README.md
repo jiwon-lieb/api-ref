@@ -20,7 +20,7 @@ layout:
 
 # 소개
 
-MBTI 조언 API 문서에 오신 것을 환영합니다!&#x20;
+MBTI Pep Talk API provides tailered words of advice for each personality type and mood. You can retrieve, add, edit and delete pep talks.
 
 ### 바로 시작해볼까요?
 
