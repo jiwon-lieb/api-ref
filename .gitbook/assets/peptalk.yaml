@@ -1,0 +1,204 @@
+openapi: 3.0.0
+info:
+  title: "Pep Talk API"
+  description: "An API for retrieving and managing pep talks based on MBTI and mood."
+  version: "1.0.0"
+
+servers:
+  - url: "https://api.yourdomain.com"
+    description: "Production Server"
+
+paths:
+  /api/peptalk/:
+    get:
+      summary: "Retrieve all pep talks"
+      description: "Returns a list of all available pep talks."
+      operationId: getPepTalks
+      parameters:
+        - name: mood
+          in: query
+          required: false
+          description: "Filter pep talks by mood."
+          schema:
+            type: string
+            enum:
+              - sad
+              - angry
+              - annoyed
+              - anxious
+              - depressed
+              - frustrated
+              - lonely
+              - overwhelmed
+        - name: mbti_type
+          in: query
+          required: false
+          description: "Filter pep talks by MBTI type."
+          schema:
+            type: string
+            enum:
+              - INTJ
+              - INTP
+              - ENTJ
+              - ENTP
+              - INFJ
+              - INFP
+              - ENFJ
+              - ENFP
+              - ISTJ
+              - ISFJ
+              - ESTJ
+              - ESFJ
+              - ISTP
+              - ISFP
+              - ESTP
+              - ESFP
+      responses:
+        "200":
+          description: "A list of pep talks."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PepTalk"
+
+    post:
+      summary: "Create a new pep talk"
+      description: "Allows users to add a new pep talk entry."
+      operationId: createPepTalk
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PepTalk"
+      responses:
+        "201":
+          description: "Pep talk created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PepTalk"
+
+  /api/peptalk/{id}:
+    get:
+      summary: "Retrieve a specific pep talk"
+      description: "Fetches a single pep talk by ID."
+      operationId: getPepTalkById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "The ID of the pep talk."
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "Pep talk details."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PepTalk"
+        "404":
+          description: "Pep talk not found."
+
+    put:
+      summary: "Update a pep talk"
+      description: "Updates an existing pep talk."
+      operationId: updatePepTalk
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "The ID of the pep talk to update."
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PepTalk"
+      responses:
+        "200":
+          description: "Pep talk updated successfully."
+        "404":
+          description: "Pep talk not found."
+
+    delete:
+      summary: "Delete a pep talk (Local-only)"
+      description: "Removes a pep talk from the user's local environment."
+      operationId: deletePepTalk
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "The ID of the pep talk to delete."
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: "Pep talk deleted successfully."
+
+components:
+  schemas:
+    PepTalk:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "Unique identifier for the pep talk."
+          readOnly: true
+        mbti_type:
+          type: string
+          description: "MBTI type the pep talk is for."
+          enum:
+            - INTJ
+            - INTP
+            - ENTJ
+            - ENTP
+            - INFJ
+            - INFP
+            - ENFJ
+            - ENFP
+            - ISTJ
+            - ISFJ
+            - ESTJ
+            - ESFJ
+            - ISTP
+            - ISFP
+            - ESTP
+            - ESFP
+        mood:
+          type: string
+          description: "Mood associated with the pep talk."
+          enum:
+            - sad
+            - angry
+            - annoyed
+            - anxious
+            - depressed
+            - frustrated
+            - lonely
+            - overwhelmed
+        pep_eng:
+          type: string
+          description: "The pep talk text in English."
+        pep_kor:
+          type: string
+          description: "The pep talk text in Korean."
+        owner:
+          type: integer
+          description: "User ID of the owner who created the pep talk."
+          required: true
+        created_at:
+          type: string
+          format: date-time
+          description: "Timestamp of when the pep talk was created."
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: "Timestamp of when the pep talk was last updated."
+          readOnly: true

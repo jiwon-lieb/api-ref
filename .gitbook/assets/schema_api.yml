@@ -1,0 +1,363 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/peptalk/:
+    get:
+      operationId: api_peptalk_list
+      description: Returns all available pep talks, optionally by mood. Supports pagination.
+      summary: Retrieve all Pep Talks
+      parameters:
+      - in: query
+        name: mood
+        schema:
+          type: string
+        description: Specifies the emotional state for the pep talk. If omitted, the API returns all pep talks.
+      - in: query
+        name: page
+        schema:
+          type: integer
+        description: "Page number (default: 1)"
+      - in: query
+        name: limit
+        schema:
+          type: integer
+        description: "Number of results per page (default: 20)"
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PepTalk'
+          description: ''
+    post:
+      operationId: api_peptalk_create
+      description: Allows users to create a single or multiple pep talks at once.
+      summary: Create New Pep Talk
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PepTalk'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PepTalk'
+          multipart/form-data:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PepTalk'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PepTalk'
+          description: 'Pep talk successfully created!'
+  /api/peptalk/{mbti}/:
+    get:
+      operationId: api_peptalk_list_2
+      description: Retrieves pep talks for a specific MBTI, filtered by mood.
+      summary: Get MBTI-Specific Pep Talk by Mood
+      parameters:
+      - in: path
+        name: mbti
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      - in: query
+        name: mbti
+        schema:
+          type: string
+        description: MBTI personality type (e.g., INTJ, ENFP)
+        required: true
+      - in: query
+        name: mood
+        schema:
+          type: string
+        description: Specifies the emotional state for the pep talk.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PepTalk'
+          description: ''
+        '400':
+          description: Invalid MBTI Type
+  /api/peptalk/{id}/:
+    get:
+      operationId: api_peptalk_retrieve
+      description: Fetches a specific Pep Talk by ID.
+      summary: Retrieve Pep Talk
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pep talk.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PepTalk'
+          description: ''
+    put:
+      operationId: api_peptalk_update
+      description: Updates existing pep talks.
+      summary: Update Pep Talk
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pep talk.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PepTalk'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PepTalk'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PepTalk'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PepTalk'
+          description: 'Pep talk successfully updated!'
+    patch:
+      operationId: api_peptalk_partial_update
+      description: API endpoint for managing pep talks.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pep talk.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPepTalk'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPepTalk'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPepTalk'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PepTalk'
+          description: ''
+    delete:
+      operationId: api_peptalk_destroy
+      description: Deletes a specific Pep Talk by ID.
+      summary: Delete a Pep Talk
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pep talk.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    MbtiTypeEnum:
+      enum:
+      - INTJ
+      - INTP
+      - ENTJ
+      - ENTP
+      - INFJ
+      - INFP
+      - ENFJ
+      - ENFP
+      - ISTJ
+      - ISFJ
+      - ESTJ
+      - ESFJ
+      - ISTP
+      - ISFP
+      - ESTP
+      - ESFP
+      type: string
+      description: |-
+
+    MoodEnum:
+      enum:
+      - sad
+      - angry
+      - annoyed
+      - anxious
+      - depressed
+      - frustrated
+      - lonely
+      - overwhelmed
+      type: string
+      description: |-
+
+    NullEnum:
+      enum:
+      - null
+    PatchedPepTalk:
+      type: object
+      description: Serializer for Pep Talk objects.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Unique ID of the pep talk
+        mbti_type:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/MbtiTypeEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        mood:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/MoodEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        pep_eng:
+          type: string
+          nullable: true
+          description: Pep talk message in English
+        pep_kor:
+          type: string
+          nullable: true
+          description: Pep talk message in Korean
+        owner:
+          type: integer
+          description: User who created the pep talk
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Last update timestamp
+    PepTalk:
+      type: object
+      description: Serializer for pep talk objects.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Unique ID of the pep talk
+        mbti_type:
+          nullable: false
+          oneOf:
+          - $ref: '#/components/schemas/MbtiTypeEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        mood:
+          nullable: false
+          oneOf:
+          - $ref: '#/components/schemas/MoodEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        pep_eng:
+          type: string
+          nullable: true
+          description: Pep talk message in English
+        pep_kor:
+          type: string
+          nullable: true
+          description: Pep talk message in Korean
+        owner:
+          type: integer
+          description: User who created the pep talk
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Last update timestamp
+      required:
+      - created_at
+      - id
+      - owner
+      - updated_at
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
