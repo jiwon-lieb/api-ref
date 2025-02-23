@@ -1,6 +1,6 @@
 ---
-description: This document provides the specifications of the MBTI Pep Talk API.
 icon: code
+description: This document provides the specifications of the MBTI Pep Talk API.
 cover: ../.gitbook/assets/banner.png
 coverY: 0
 layout:
@@ -23,9 +23,81 @@ layout:
 
 ## :computer: Authentication
 
+This API uses Bearer Token Authentication. Clients must include the API key in the Authorization header of each request.
+
+#### Getting an API Key
+
+1\. Sign up at \[MBTI Pep TAlk API]\([https://api.peptalk.jiwonkwak.co/](https://api.peptalk.jiwonkwak.co/)).
+
+2\. Retrieve your API key after signing up.
+
+3\. Use this key in the Authorization header for every request.
+
+{% tabs %}
+{% tab title="Curl" %}
+```
+curl -X GET "https://api.example.com/resource" \
+     -H "Authorization: Bearer YOUR_API_KEY"
+```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+import requests
+
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.get("https://api.example.com/resource", headers=headers)
+print(response.json())
+```
+{% endtab %}
+{% endtabs %}
+
+#### Authorization Header Format
+
+```json
+Authorization: Bearer YOUR_API_KEY
+```
+
+Replace YOUR\_API\_KEY with your actual API key.
+
+#### Handling Invalid API Keys
+
+• If you provide an invalid or missing API key, the API will return an 401 Unauthorized error.
+
+• Expired or revoked keys will also trigger authentication failures.
+
 ## :warning: Error Codes
 
+When the API encounters an error, it returns an appropriate HTTP status code along with a JSON response containing an error message.
 
+#### Error Response Format
+
+```json
+{
+    "error": {
+        "code": 401,
+        "message": "Invalid API Key"
+    }
+}
+```
+
+#### Common Error  Codes
+
+| Status Code | Error Message         | Description                                          |
+| ----------- | --------------------- | ---------------------------------------------------- |
+| 400         | Bad Request           | The request is malformed or missing parameters.      |
+| 401         | Unauthorized          | The API key is invalid, expired, or missing.         |
+| 403         | Forbidden             | The API key does not have the necessary permissions. |
+| 404         | Not Found             | The requested resource does not exist.               |
+| 429         | Too Many Requests     | The request exceeded the API rate limit.             |
+| 500         | Internal Server Error | An unexpected server error occurred.                 |
 
 ## Get Pep Talk
 
