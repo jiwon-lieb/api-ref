@@ -88,7 +88,7 @@ When the API encounters an error, it returns an appropriate HTTP status code alo
 }
 ```
 
-#### Common Error  Codes
+#### Common Error Codes
 
 | Status Code | Error Message         | Description                                          |
 | ----------- | --------------------- | ---------------------------------------------------- |
@@ -103,7 +103,7 @@ When the API encounters an error, it returns an appropriate HTTP status code alo
 
 <mark style="color:green;">`GET`</mark> `/api/peptalk/`
 
-Retrieves a random pep talk with advanced filtering.
+Retrieves pep talks with advanced filtering.
 
 ### **Headers**
 
@@ -114,8 +114,9 @@ Retrieves a random pep talk with advanced filtering.
 
 ### **Query Parameters**
 
-<table><thead><tr><th width="128">Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>optional</em></td><td></td></tr><tr><td>mood</td><td><code>string</code></td><td><em>optional</em></td><td><p>Specifies the emotional state for the pep talk. Randomly chosen if omitted. <br><strong>Supported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed
-</code></pre></td></tr><tr><td>username</td><td><code>string</code></td><td><em>optional</em></td><td>Username of the person that created the pep talk.</td></tr><tr><td>search</td><td><code>string</code></td><td><em>optional</em></td><td>A search keyword.</td></tr><tr><td>ordering</td><td><code>string</code></td><td><em>optional</em></td><td><p>The order of returned results.</p><p></p><p><strong>Supported values</strong></p><pre class="language-python"><code class="lang-python"><strong>'created_at', 'updated_at'
+<table><thead><tr><th width="128">Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>optional</em></td><td><p>Personality type. Randomly chosen if omitted.<br><strong>Supported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">ISTJ, ISFJ, INFJ, INTJ, ISTP, ISFP, INFP, INTP, ESTP, ESFP, ENFP, ENTP, ESTJ, ESFJ, ENFJ, ENTJ
+</code></pre></td></tr><tr><td>mood</td><td><code>string</code></td><td><em>optional</em></td><td><p>Specifies the emotional state for the pep talk. Randomly chosen if omitted.<br><strong>Supported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed
+</code></pre></td></tr><tr><td>username</td><td><code>string</code></td><td><em>optional</em></td><td>Username of the person that created the pep talk.</td></tr><tr><td>search</td><td><code>string</code></td><td><em>optional</em></td><td>A search keyword.</td></tr><tr><td>ordering</td><td><code>string</code></td><td><em>optional</em></td><td><p>The order of returned results.</p><p><strong>Supported values</strong></p><pre class="language-python"><code class="lang-python"><strong>'created_at', 'updated_at'
 </strong></code></pre></td></tr><tr><td>page</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of pages returned. (Default: 1)</td></tr><tr><td>page_size</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of entries per page returned. (Default: 10)</td></tr></tbody></table>
 
 ### **Example Request**
@@ -195,9 +196,9 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=2&pa
 
 ***
 
-## Get Random Pep Talk by Mood and MBTI
+## Get a Random Pep Talk by Mood and MBTI
 
-<mark style="color:green;">`GET`</mark> `/api/peptalk/`
+<mark style="color:green;">`GET`</mark> `/api/peptalk/random`
 
 Retrieves a random pep talk for a specified MBTI and mood.
 
@@ -207,6 +208,12 @@ Retrieves a random pep talk for a specified MBTI and mood.
 | ------------- | ------------------ |
 | Content-Type  | `application/json` |
 | Authorization | `Bearer <token>`   |
+
+### **Query Parameters**
+
+<table><thead><tr><th width="128">Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>required</em></td><td><p></p><p>Personality type. Randomly chosen if omitted.<br><strong>Supported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">ISTJ, ISFJ, INFJ, INTJ, ISTP, ISFP, INFP, INTP, ESTP, ESFP, ENFP, ENTP, ESTJ, ESFJ, ENFJ, ENTJ
+</code></pre></td></tr><tr><td>mood</td><td><code>string</code></td><td><em>required</em></td><td><p>Specifies the emotional state for the pep talk. Randomly chosen if omitted.<br><strong>Supported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed
+</code></pre></td></tr><tr><td>page</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of pages returned. (Default: 1)</td></tr><tr><td>page_size</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of entries per page returned. (Default: 10)</td></tr></tbody></table>
 
 ### **Request**
 
@@ -267,88 +274,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 
 ***
 
-## Get MBTI-Specific Pep Talk for a Mood
-
-<mark style="color:green;">`GET`</mark> `/api/peptalk/:mbti?mood={mood}`
-
-Retrieves a random pep talk for a specific MBTI and a chosen mood.
-
-### **Headers**
-
-| Name          | Value              |
-| ------------- | ------------------ |
-| Content-Type  | `application/json` |
-| Authorization | `Bearer <token>`   |
-
-### **Query Parameters**
-
-<table>
-	<thead>
-		<tr>
-			<th width="99">Name</th>
-			<th>Type</th>
-			<th>Required</th>
-			<th width="363">Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>mood</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>
-				<em>optional</em>
-			</td>
-			<td>
-				<p>Specifies the emotional state for the pep talk. If omitted, the API returns a random pep talk for the MBTI’s default mood. 
-					<br>
-						<br>
-							<strong>Supported values</strong>
-						</p>
-						<p>
-							<code>sad</code>, 
-							<code>angry</code>, 
-							<code>annoyed</code>, 
-							<code>anxious</code>, 
-							<code>frustrated</code>, 
-							<code>lonely</code>, 
-							<code>depressed</code>, 
-							<code>overwhelmed</code>
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table> 
-
-### **Example Request**
-
-```url
-GET /api/peptalk/INTJ?mood=sad
-```
-
-### **Response**
-
-{% tabs %}
-{% tab title="200" %}
-```json
-{
-  "mbti_type": "INTJ",
-  "mood": "default",
-  "pep_eng": "Trust your strategy. Overthinking won’t make it perfect.",
-  "pep_kor": "네 전략을 믿어. 과한 생각이 완벽함을 만들진 않아."
-}
-```
-{% endtab %}
-
-{% tab title="400" %}
-
-{% endtab %}
-{% endtabs %}
-
-***
-
-## Retrieve All Pep Talks
+## Get All Pep Talks
 
 <mark style="color:green;">`GET`</mark> `/api/peptalk/all?page={page}&limit={limit}`
 
@@ -401,9 +327,9 @@ GET /api/peptalk/all?page=1&limit=10
 
 ## Add a New Pep Talk
 
-<mark style="color:purple;">`POST`</mark>  `/api/peptalk/add`
+<mark style="color:purple;">`POST`</mark> `/api/peptalk/add`
 
-Allows users/admins to add a new pep talk entry.
+Add a new pep talk.
 
 ### **Headers**
 
@@ -412,47 +338,9 @@ Allows users/admins to add a new pep talk entry.
 | Content-Type  | `application/json` |
 | Authorization | `Bearer <token>`   |
 
-### Request Body&#x20;
+### Request Body
 
-<table>
-	<thead>
-		<tr>
-			<th width="169">Name</th>
-			<th>Type</th>
-			<th width="363">Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>mbti</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Page number (default: 1)</td>
-		</tr>
-		<tr>
-			<td>mood</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Number of results per page (default: 20)</td>
-		</tr>
-		<tr>
-			<td>pep_eng</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Pep talk in English</td>
-		</tr>
-		<tr>
-			<td>pep_kor</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Pep talk in Korean</td>
-		</tr>
-	</tbody>
-</table>  
+<table><thead><tr><th width="169">Name</th><th>Type</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti</td><td><code>string</code></td><td>Page number (default: 1)</td></tr><tr><td>mood</td><td><code>string</code></td><td>Number of results per page (default: 20)</td></tr><tr><td>pep_eng</td><td><code>string</code></td><td>Pep talk in English</td></tr><tr><td>pep_kor</td><td><code>string</code></td><td>Pep talk in Korean</td></tr></tbody></table>
 
 ### Example Request
 
@@ -493,14 +381,27 @@ Allows users/admins to add a new pep talk entry.
 
 ## Update a Pep Talk
 
-<mark style="color:purple;">`PUT`</mark>  `/api/peptalk/:mbti/update/:id`
+<mark style="color:purple;">`PUT`</mark> `/api/peptalk/:mbti/update/:id/`
 
 Updates an existing pep talk.
+
+### **Headers**
+
+| Name          | Value              |
+| ------------- | ------------------ |
+| Content-Type  | `application/json` |
+| Authorization | `Bearer <token>`   |
+
+### Path Parameter
+
+| Name | Type      | Description                            |
+| ---- | --------- | -------------------------------------- |
+| id   | _integer_ | ID of the pep talk you want to update. |
 
 ### Example Request
 
 ```
-PUT /api/peptalk/ENFP/update/45
+PUT /api/peptalk/45/
 ```
 
 ### Request Body
@@ -538,14 +439,27 @@ PUT /api/peptalk/ENFP/update/45
 
 ## Delete a Pep Talk
 
-<mark style="color:purple;">`DELETE`</mark>  `/api/peptalk/:mbti/delete/:id`
+<mark style="color:purple;">`DELETE`</mark> `/api/peptalk/:mbti/delete/:id/`
 
 Deletes a pep talk.
+
+### **Headers**
+
+| Name          | Value              |
+| ------------- | ------------------ |
+| Content-Type  | `application/json` |
+| Authorization | `Bearer <token>`   |
+
+### Path Parameter
+
+| Name | Type      | Description                            |
+| ---- | --------- | -------------------------------------- |
+| id   | _integer_ | ID of the pep talk you want to delete. |
 
 ### Example Request
 
 ```
-DELETE /api/peptalk/ISFJ/delete/20
+DELETE /api/peptalk/40/
 ```
 
 ### Response
@@ -573,38 +487,3 @@ DELETE /api/peptalk/ISFJ/delete/20
 
 ***
 
-## Search Pep Talks by Keyword
-
-<mark style="color:purple;">`GET`</mark>  `/api/peptalk/search?query={text}`
-
-Searches for pep talks containing a specific keyword in the text.
-
-### Example Request
-
-```
-GET /api/peptalk/search?query=confidence
-```
-
-### Response
-
-{% tabs %}
-{% tab title="Success" %}
-```json
-{
-  "results": [
-    {
-      "id": 22,
-      "mbti_type": "ENTP",
-      "mood": "confident",
-      "pep_eng": "Confidence is built, not given. Keep moving.",
-      "pep_kor": "자신감은 주어지는 게 아니라 만들어지는 거야. 계속 나아가."
-    }
-  ]
-}
-```
-{% endtab %}
-
-{% tab title="404" %}
-
-{% endtab %}
-{% endtabs %}
