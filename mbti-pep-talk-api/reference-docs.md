@@ -1,6 +1,7 @@
 ---
-description: 성격 유형과 감정 상태에 따른 조언을 해주는 MBTI 조언(Pep Talk) API입니다. 조언을 직접 추가, 삭제, 수정할 수도 있습니다.
-cover: ../../.gitbook/assets/banner.png
+description: This document provides the specifications of the MBTI Pep Talk API.
+icon: code
+cover: ../.gitbook/assets/banner.png
 coverY: 0
 layout:
   cover:
@@ -18,7 +19,13 @@ layout:
     visible: true
 ---
 
-# Pep Talk
+# Reference Docs
+
+## :computer: Authentication
+
+## :warning: Error Codes
+
+
 
 ## Get Pep Talk
 
@@ -35,7 +42,8 @@ Retrieves a random pep talk with advanced filtering.
 
 ### **Query Parameters**
 
-<table><thead><tr><th width="128">Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>optional</em></td><td></td></tr><tr><td>mood</td><td><code>string</code></td><td><em>optional</em></td><td><p>Specifies the emotional state for the pep talk. If omitted, the API returns a random pep talk for the MBTI’s default mood. <br><br><strong>Supported values</strong></p><p><code>sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed</code></p></td></tr><tr><td>username</td><td><code>string</code></td><td><em>optional</em></td><td>Username of the person that created the pep talk.</td></tr><tr><td>search</td><td><code>string</code></td><td><em>optional</em></td><td>A search keyword.</td></tr><tr><td>ordering</td><td><code>string</code></td><td><em>optional</em></td><td><p>The order of returned results.</p><p></p><p><strong>Supported values</strong></p><pre class="language-python"><code class="lang-python"><strong>'created_at', 'updated_at'
+<table><thead><tr><th width="128">Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>optional</em></td><td></td></tr><tr><td>mood</td><td><code>string</code></td><td><em>optional</em></td><td><p>Specifies the emotional state for the pep talk. If omitted, the API returns a pep talk for a<br>S<strong>upported values</strong></p><pre class="language-python" data-overflow="wrap"><code class="lang-python">sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed
+</code></pre></td></tr><tr><td>username</td><td><code>string</code></td><td><em>optional</em></td><td>Username of the person that created the pep talk.</td></tr><tr><td>search</td><td><code>string</code></td><td><em>optional</em></td><td>A search keyword.</td></tr><tr><td>ordering</td><td><code>string</code></td><td><em>optional</em></td><td><p>The order of returned results.</p><p></p><p><strong>Supported values</strong></p><pre class="language-python"><code class="lang-python"><strong>'created_at', 'updated_at'
 </strong></code></pre></td></tr><tr><td>page</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of pages returned. (Default: 1)</td></tr><tr><td>page_size</td><td><code>integer</code></td><td><em>optional</em></td><td>Number of entries per page returned. (Default: 10)</td></tr></tbody></table>
 
 ### **Example Request**
