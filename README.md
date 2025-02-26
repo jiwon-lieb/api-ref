@@ -1,5 +1,6 @@
 ---
 icon: circle-heart
+hidden: true
 cover: .gitbook/assets/banner.png
 coverY: 0
 layout:

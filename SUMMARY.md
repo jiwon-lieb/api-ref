@@ -7,5 +7,4 @@
   * [Swagger](quickstart/swagger.md)
   * [Insomnia](quickstart/insomnia.md)
 * [MBTI Pep Talk API](mbti-pep-talk-api/README.md)
-  * [Getting Started](mbti-pep-talk-api/getting-started.md)
   * [Reference Docs](mbti-pep-talk-api/reference-docs.md)

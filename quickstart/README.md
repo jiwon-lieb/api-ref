@@ -1,5 +1,6 @@
 ---
 icon: bullseye-arrow
+hidden: true
 ---
 
 # Quick Start
