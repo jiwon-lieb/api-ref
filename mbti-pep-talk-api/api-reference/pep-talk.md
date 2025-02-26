@@ -162,7 +162,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 ```
 {% endcode %}
 
-### **Response**
+### **응답**
 
 {% tabs %}
 {% tab title="200" %}
