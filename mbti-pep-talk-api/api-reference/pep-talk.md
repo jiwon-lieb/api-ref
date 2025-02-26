@@ -418,39 +418,3 @@ DELETE /api/peptalk/ISFJ/delete/20
 {% endtabs %}
 
 ***
-
-## Search Peptalks by Keyword
-
-<mark style="color:purple;">`GET`</mark>  `/api/peptalk/search?query={text}`
-
-Searches for pep talks containing a specific keyword in the text.
-
-### Example Request
-
-```
-GET /api/peptalk/search?query=confidence
-```
-
-### Response
-
-{% tabs %}
-{% tab title="Success" %}
-```json
-{
-  "results": [
-    {
-      "id": 22,
-      "mbti": "ENTP",
-      "mood": "confident",
-      "pep_eng": "Confidence is built, not given. Keep moving.",
-      "pep_kor": "자신감은 주어지는 게 아니라 만들어지는 거야. 계속 나아가."
-    }
-  ]
-}
-```
-{% endtab %}
-
-{% tab title="404" %}
-
-{% endtab %}
-{% endtabs %}
