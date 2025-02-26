@@ -10,4 +10,4 @@
   * [Getting Started](mbti-pep-talk-api/getting-started/README.md)
     * [Authentication](mbti-pep-talk-api/getting-started/auth.md)
     * [에러](mbti-pep-talk-api/getting-started/errors.md)
-  * [레퍼런스](mbti-pep-talk-api/undefined.md)
+  * [레퍼런스](mbti-pep-talk-api/pep-talk.md)
