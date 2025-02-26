@@ -132,7 +132,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=2&pa
 {% code overflow="wrap" %}
 ```url
 curl -X 'GET' \
-  'http://api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=2&page_size=3' \
+  'http://api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=1&page_size=3' \
   -H 'accept: application/json' \
   -H 'authorization: Basic aml3b25rd2FrOmF0bGFudGljQ2hhcnRlcjA4MTQ=' \
   -H 'X-CSRFTOKEN: Bp0ZFxJAa77cdttXw8VqodapUt3n9KailNTs5JuaCIq4cTcowpq5o6BZz3I5NY5x'
@@ -142,15 +142,37 @@ curl -X 'GET' \
 
 {% tab title="JavaScript" %}
 ```javascript
-const message = "hello world";
-console.log(message);
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=1&page_size=3", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 ```
 {% endtab %}
 
 {% tab title="Python" %}
 ```python
-message = "hello world"
-print(message)
+import requests
+
+url = "api.peptalk.jiwonkwak.co/api/peptalk/?mbti_type=ENTJ&mood=angry&page=1&page_size=3"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
 ```
 {% endtab %}
 {% endtabs %}
@@ -230,15 +252,37 @@ curl -X 'GET' \
 
 {% tab title="JavaScript" %}
 ```javascript
-const message = "hello world";
-console.log(message);
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 ```
 {% endtab %}
 
 {% tab title="Python" %}
 ```python
-message = "hello world"
-print(message)
+import requests
+
+url = "api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
 ```
 {% endtab %}
 {% endtabs %}
@@ -266,7 +310,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 {% tab title="404" %}
 ```json
 {
-  "error": "Invalid request"
+    "detail": "Not found."
 }
 ```
 {% endtab %}
@@ -274,54 +318,101 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 
 ***
 
-## Get All Pep Talks
+## Get Pep Talk by ID
 
-<mark style="color:green;">`GET`</mark> `/api/peptalk/all?page={page}&limit={limit}`
+<mark style="color:green;">`GET`</mark> `/api/peptalk/:id/`
 
-Returns all available pep talks.
+Retrieves a specific pep talk by ID.
 
-### **Headers**
+### **헤더**
 
 | Name          | Value              |
 | ------------- | ------------------ |
 | Content-Type  | `application/json` |
 | Authorization | `Bearer <token>`   |
 
-### **Query Parameters**
-
-<table><thead><tr><th>Name</th><th>Type</th><th>Required</th><th width="363">Description</th></tr></thead><tbody><tr><td>page</td><td><code>number</code></td><td><em>optional</em></td><td>Page number (default: 1)</td></tr><tr><td>limit</td><td><code>number</code></td><td><em>optional</em></td><td>Number of results per page (default: 20)</td></tr></tbody></table>
-
-### Example Request
-
-```
-GET /api/peptalk/all?page=1&limit=10
-```
-
-### Response
+### **Request**
 
 {% tabs %}
-{% tab title="Success" %}
+{% tab title="Curl" %}
+```url
+curl -X 'GET' \
+  'https://api.peptalk.jiwonkwak.co/api/peptalk/65/' \
+  -H 'Authorization: ••••••'
 ```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("https://api.peptalk.jiwonkwak.co/api/peptalk/65/", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+import requests
+
+url = "https://api.peptalk.jiwonkwak.co/api/peptalk/65/"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+
+```
+{% endtab %}
+{% endtabs %}
+
+{% code title="Request URL" fullWidth="true" %}
+```http
+http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
+```
+{% endcode %}
+
+### **Response**
+
+{% tabs %}
+{% tab title="200" %}
+```json
 {
-  "page": 1,
-  "total_pages": 5,
-  "data": [
-    {
-      "id": 12,
-      "mbti_type": "ENFP",
-      "mood": "excited",
-      "pep_eng": "Your enthusiasm is contagious. Spread it wisely.",
-      "pep_kor": "네 열정은 전염성이 있어. 현명하게 퍼뜨려."
-    }
-  ]
+    "id": 65,
+    "mbti_type": "ISTJ",
+    "mood": "sad",
+    "pep_eng": "Even the strongest foundations shake sometimes. It’s okay to take a moment to reset. 🏗️",
+    "pep_kor": "가장 강한 기초도 가끔 흔들려. 다시 시작할 시간을 가져도 괜찮아. 🏗️",
+    "owner": "jiwonkwak",
+    "created_at": "2025-01-27T05:47:55.148094Z",
+    "updated_at": "2025-01-27T05:47:55.148100Z"
 }
 ```
 {% endtab %}
 
-{% tab title="Error" %}
-
+{% tab title="404" %}
+```json
+{
+    "detail": "Not found."
+}
+```
 {% endtab %}
 {% endtabs %}
+
 
 ***
 
@@ -344,14 +435,80 @@ Add a new pep talk.
 
 ### Example Request
 
+{% tabs %}
+{% tab title="Curl" %}
+```url
+curl -X 'GET' \
+  'https://api.peptalk.jiwonkwak.co/api/peptalk/' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: ••••••' \
+  -D '{
+    "mbti_type": "ESTP",
+    "mood": "frustrated",
+    "pep_eng": "You'\''re an ESTP—bold, sharp, and built for action. Frustration? That'\''s just your energy being       temporarily bottled up. You thrive on momentum, and setbacks are just launchpads for your next big move.            Channel that fire, adapt, and push forward. The game isn’t over—it’s just getting interesting.",
+    "pep_kor": "당신은 ESTP—대담하고 예리하며 행동을 위해 태어난 사람입니다. 좌절감? 그건 단지 당신의 에너지가 잠시 갇혀 있는 상태일 뿐이에요. 당       신은 속도를 즐기는 사람이고, 장애물은 그저 다음 도약을 위한 발판일 뿐입니다. 이 불꽃을 활용하고, 적응하며 앞으로 나아가세요. 게임은 끝난 게 아        니라, 이제부터 더 흥미로워질 뿐입니다."
+    }'
 ```
-{
-  "mbti_type": "ISTJ",
-  "mood": "overwhelmed",
-  "pep_eng": "You don’t have to do everything at once. Prioritize.",
-  "pep_kor": "모든 걸 한 번에 할 필요 없어. 우선순위를 정해."
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", "Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662");
+
+const raw = JSON.stringify({
+  "mbti_type": "ESTP",
+  "mood": "frustrated",
+  "pep_eng": "You're an ESTP—bold, sharp, and built for action. Frustration? That's just your energy being temporarily bottled up. You thrive on momentum, and setbacks are just launchpads for your next big move. Channel that fire, adapt, and push forward. The game isn’t over—it’s just getting interesting.",
+  "pep_kor": "당신은 ESTP—대담하고 예리하며 행동을 위해 태어난 사람입니다. 좌절감? 그건 단지 당신의 에너지가 잠시 갇혀 있는 상태일 뿐이에요. 당신은 속도를 즐기는 사람이고, 장애물은 그저 다음 도약을 위한 발판일 뿐입니다. 이 불꽃을 활용하고, 적응하며 앞으로 나아가세요. 게임은 끝난 게 아니라, 이제부터 더 흥미로워질 뿐입니다."
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://api.peptalk.jiwonkwak.co/api/peptalk/", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+import requests
+import json
+
+url = "https://api.peptalk.jiwonkwak.co/api/peptalk/"
+
+payload = json.dumps({
+  "mbti_type": "ESTP",
+  "mood": "frustrated",
+  "pep_eng": "You're an ESTP—bold, sharp, and built for action. Frustration? That's just your energy being temporarily bottled up. You thrive on momentum, and setbacks are just launchpads for your next big move. Channel that fire, adapt, and push forward. The game isn’t over—it’s just getting interesting.",
+  "pep_kor": "당신은 ESTP—대담하고 예리하며 행동을 위해 태어난 사람입니다. 좌절감? 그건 단지 당신의 에너지가 잠시 갇혀 있는 상태일 뿐이에요. 당신은 속도를 즐기는 사람이고, 장애물은 그저 다음 도약을 위한 발판일 뿐입니다. 이 불꽃을 활용하고, 적응하며 앞으로 나아가세요. 게임은 끝난 게 아니라, 이제부터 더 흥미로워질 뿐입니다."
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer 2acc6dc3ee05dd9c12e341bf98ea54bbe6ca6662'
 }
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
 ```
+{% endtab %}
+{% endtabs %}
+
+{% code title="Request URL" fullWidth="true" %}
+```http
+http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
+```
+{% endcode %}
 
 ### Response
 
@@ -359,8 +516,14 @@ Add a new pep talk.
 {% tab title="Success" %}
 ```json
 {
-  "message": "Pep talk added successfully!",
-  "id": 57
+    "id": 482,
+    "mbti_type": "ENTP",
+    "mood": "lonely",
+    "pep_eng": "You’re never truly alone—your mind is an adventure all on its own! 🚀✨ Go spark a conversation, challenge a thought, or create something wild. The world needs your chaos! 💡🔥",
+    "pep_kor": "너는 절대 혼자가 아니야—너의 머릿속은 이미 하나의 모험이야! 🚀✨ 누군가와 대화 나누고, 새로운 아이디어를 던져봐! 세상은 너의 혼돈을 기다리고 있어! 💡🔥",
+    "owner": "jiwonkwak",
+    "created_at": "2025-02-25T12:04:34.866778Z",
+    "updated_at": "2025-02-25T12:04:34.866818Z"
 }
 ```
 {% endtab %}
@@ -368,10 +531,7 @@ Add a new pep talk.
 {% tab title="404" %}
 ```
 {
-    "error": {
-        "code": 404,
-        "message": "Page not found."
-    }
+    "detail": "Not found."
 }
 ```
 {% endtab %}
@@ -381,7 +541,7 @@ Add a new pep talk.
 
 ## Update a Pep Talk
 
-<mark style="color:purple;">`PUT`</mark> `/api/peptalk/:mbti/update/:id/`
+<mark style="color:purple;">`PUT`</mark> `/api/peptalk/:id/`
 
 Updates an existing pep talk.
 
@@ -439,7 +599,7 @@ PUT /api/peptalk/45/
 
 ## Delete a Pep Talk
 
-<mark style="color:purple;">`DELETE`</mark> `/api/peptalk/:mbti/delete/:id/`
+<mark style="color:purple;">`DELETE`</mark> `/api/peptalk/:id/`
 
 Deletes a pep talk.
 
@@ -476,10 +636,7 @@ DELETE /api/peptalk/40/
 {% tab title="404" %}
 ```
 {
-    "error": {
-        "code": 404,
-        "message": "Page not found."
-    }
+    "detail": "Not found."
 }
 ```
 {% endtab %}
