@@ -21,8 +21,6 @@ layout:
 
 # 소개
 
-MBTI Pep Talk API provides tailered words of advice for each personality type and mood. You can retrieve, add, edit and delete pep talks.
+각 성격 유형과 감정 상태에 따른 조언을 제공해주는 API입니다. 조언을 가져오고, 추가하고, 수정하고, 삭제할 수 있습니다.
 
-### 바로 시작해볼까요?
-
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Start Testing APIs</strong></td><td>Create your first site</td><td></td><td></td><td><a href="quickstart/">quickstart</a></td></tr><tr><td><strong>API REference</strong> <strong>Docs</strong></td><td>Learn the basics of GitBook</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Resources</strong></td><td>Share your docs online</td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>API Reference</strong> <strong>Docs</strong></td><td>API 레퍼런스</td><td><a href=".gitbook/assets/pngwing.com (1).png">pngwing.com (1).png</a></td><td></td><td><a href="mbti-pep-talk-api/pep-talk.md">pep-talk.md</a></td></tr><tr><td><strong>Contact</strong></td><td>contact@jiwonkwak.co</td><td><a href=".gitbook/assets/pngwing.com.png">pngwing.com.png</a></td><td></td><td><a href="broken-reference">Broken link</a></td></tr></tbody></table>
