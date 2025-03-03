@@ -38,94 +38,7 @@ layout:
 
 ### **쿼리 파라미터**
 
-<table>
-	<thead>
-		<tr>
-			<th width="128">이름</th>
-			<th>타입</th>
-			<th width="102">필수 여부</th>
-			<th width="363">설명</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>mbti_type</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>
-				<em>optional</em>
-			</td>
-			<td>16가지 MBTI 유형입니다.</td>
-		</tr>
-		<tr>
-			<td>mood</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>
-				<em>optional</em>
-			</td>
-			<td>
-				<p>Specifies the emotional state for the pep talk. If omitted, the API returns a random pep talk for the MBTI’s default mood. 
-					<br>
-						<br>
-							<strong>지원하는 값</strong>
-						</p>
-						<p>
-							<code>sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed</code>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>username</td>
-					<td>
-						<code>string</code>
-					</td>
-					<td>
-						<em>optional</em>
-					</td>
-					<td>조언을 생성한 유저 이름</td>
-				</tr>
-				<tr>
-					<td>ordering</td>
-					<td>
-						<code>string</code>
-					</td>
-					<td>
-						<em>optional</em>
-					</td>
-					<td>
-						<p>결과 반환 순서</p>
-							<strong>지원 하는 값</strong>
-						<br><br>
-              <p>
-							<code>'created_at', 'updated_at'</code>
-              </p>
-					</td>
-				</tr>
-				<tr>
-					<td>page</td>
-					<td>
-						<code>integer</code>
-					</td>
-					<td>
-						<em>optional</em>
-					</td>
-					<td>반환되는 페이지 수 (Default: 1)</td>
-				</tr>
-				<tr>
-					<td>page_size</td>
-					<td>
-						<code>integer</code>
-					</td>
-					<td>
-						<em>optional</em>
-					</td>
-					<td>반환되는 페이지 별 항목 개수 (Default: 10)</td>
-				</tr>
-			</tbody>
-		</table>
+<table><thead><tr><th width="128">이름</th><th>타입</th><th width="102">필수 여부</th><th width="363">설명</th></tr></thead><tbody><tr><td>mbti_type</td><td><code>string</code></td><td><em>optional</em></td><td>16가지 MBTI 유형</td></tr><tr><td>mood</td><td><code>string</code></td><td><em>optional</em></td><td><p>감정 상태<br><br><strong>지원하는 값</strong></p><p><code>sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed</code></p></td></tr><tr><td>username</td><td><code>string</code></td><td><em>optional</em></td><td>조언을 생성한 유저 이름</td></tr><tr><td>ordering</td><td><code>string</code></td><td><em>optional</em></td><td><p>결과 반환 순서</p><p><strong>지원 하는 값</strong><br><br></p><p><code>'created_at', 'updated_at'</code></p></td></tr><tr><td>page</td><td><code>integer</code></td><td><em>optional</em></td><td>반환되는 페이지 수 (Default: 1)</td></tr><tr><td>page_size</td><td><code>integer</code></td><td><em>optional</em></td><td>반환되는 페이지 별 항목 개수 (Default: 10)</td></tr></tbody></table>
 
 ### **요청 예시**
 
@@ -419,12 +332,11 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 {% endtab %}
 {% endtabs %}
 
-
 ***
 
 ## 조언 추가하기
 
-<mark style="color:purple;">`POST`</mark>  `/api/peptalk/`
+<mark style="color:purple;">`POST`</mark> `/api/peptalk/`
 
 본문으로 파라미터를 전달하여 새로운 조언을 추가할 수 있습니다.
 
@@ -437,52 +349,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 
 ### 본문
 
-<table>
-	<thead>
-		<tr>
-			<th width="169">이름</th>
-			<th>Type</th>
-			<th width="363">설명</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>mbti</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Page number (default: 1)</td>
-		</tr>
-		<tr>
-			<td>mood</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td>Number of results per page (default: 20)</td>
-		</tr>
-		<tr>
-			<td>pep_eng</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>pep_kor</td>
-			<td>
-				<code>string</code>
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>user_id</td>
-			<td>
-				<code>integer</code>
-			</td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+<table><thead><tr><th width="169">이름</th><th>Type</th><th>필수 여부</th><th width="363">설명</th></tr></thead><tbody><tr><td>mbti</td><td><code>string</code></td><td><em>required</em></td><td>16가지 MBTI 유형</td></tr><tr><td>mood</td><td><code>string</code></td><td><em>required</em></td><td><p>감정 상태<br><br><strong>지원하는 값</strong></p><p><code>sad, angry, annoyed, anxious, frustrated, lonely, depressed, overwhelmed</code></p></td></tr><tr><td>pep_eng</td><td><code>string</code></td><td><em>required</em></td><td>영어 조언</td></tr><tr><td>pep_kor</td><td><code>string</code></td><td><em>required</em></td><td>한국어 조언</td></tr></tbody></table>
 
 ### 요청
 
@@ -592,7 +459,7 @@ http://api.peptalk.jiwonkwak.co/api/peptalk/random/?mbti_type=INTJ&mood=anxious
 
 ## 조언 수정하기
 
-<mark style="color:purple;">`PUT`</mark>  `/api/peptalk/:id/`
+<mark style="color:purple;">`PUT`</mark> `/api/peptalk/:id/`
 
 이미 추가된 조언을 일부 또는 전부 수정합니다.
 
@@ -641,7 +508,7 @@ PUT /api/peptalk/482/
 
 ## 조언 삭제하기
 
-<mark style="color:purple;">`DELETE`</mark>  `/api/peptalk/:id/`
+<mark style="color:purple;">`DELETE`</mark> `/api/peptalk/:id/`
 
 등록된 조언을 삭제합니다.
 

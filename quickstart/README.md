@@ -1,5 +1,6 @@
 ---
 icon: bullseye-arrow
+hidden: true
 ---
 
 # 빠른 시작
